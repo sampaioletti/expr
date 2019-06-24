@@ -3,10 +3,10 @@ package expr_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/antonmedv/expr"
-	"github.com/antonmedv/expr/vm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"gopkg.in/antonmedv/expr.v2"
+	"gopkg.in/antonmedv/expr.v2/vm"
 	"strings"
 	"testing"
 )

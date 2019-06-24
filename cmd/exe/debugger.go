@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/antonmedv/expr/compiler"
-	"github.com/antonmedv/expr/parser"
-	. "github.com/antonmedv/expr/vm"
 	"github.com/gdamore/tcell"
 	"github.com/rivo/tview"
 	"github.com/sanity-io/litter"
+	"gopkg.in/antonmedv/expr.v2/compiler"
+	"gopkg.in/antonmedv/expr.v2/parser"
+	. "gopkg.in/antonmedv/expr.v2/vm"
 	"sort"
 	"strconv"
 	"strings"

@@ -1,9 +1,9 @@
 package checker
 
 import (
-	"github.com/antonmedv/expr/ast"
-	"github.com/antonmedv/expr/internal/conf"
-	"github.com/antonmedv/expr/parser"
+	"gopkg.in/antonmedv/expr.v2/ast"
+	"gopkg.in/antonmedv/expr.v2/internal/conf"
+	"gopkg.in/antonmedv/expr.v2/parser"
 )
 
 type operatorPatcher struct {
