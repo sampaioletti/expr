@@ -1711,6 +1711,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case uint8:
 		switch y := b.(type) {
@@ -1738,6 +1740,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case uint16:
 		switch y := b.(type) {
@@ -1765,6 +1769,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case uint32:
 		switch y := b.(type) {
@@ -1792,6 +1798,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case uint64:
 		switch y := b.(type) {
@@ -1819,6 +1827,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case int:
 		switch y := b.(type) {
@@ -1846,6 +1856,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case int8:
 		switch y := b.(type) {
@@ -1873,6 +1885,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case int16:
 		switch y := b.(type) {
@@ -1900,6 +1914,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case int32:
 		switch y := b.(type) {
@@ -1927,6 +1943,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case int64:
 		switch y := b.(type) {
@@ -1954,6 +1972,8 @@ func add(a, b interface{}) interface{} {
 			return float32(x) + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case float32:
 		switch y := b.(type) {
@@ -1981,6 +2001,8 @@ func add(a, b interface{}) interface{} {
 			return x + y
 		case float64:
 			return float64(x) + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case float64:
 		switch y := b.(type) {
@@ -2008,11 +2030,15 @@ func add(a, b interface{}) interface{} {
 			return x + float64(y)
 		case float64:
 			return x + y
+		case string:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	case string:
 		switch y := b.(type) {
 		case string:
 			return x + y
+		default:
+			return fmt.Sprintf("%v%v", x, y)
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T %v %T", a, "+", b))

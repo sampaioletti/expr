@@ -235,6 +235,9 @@ func (v *visitor) BinaryNode(node *ast.BinaryNode) reflect.Type {
 		if isString(l) && isString(r) {
 			return stringType
 		}
+		if isString(l) || isString(r) {
+			return stringType
+		}
 
 	case "contains", "startsWith", "endsWith":
 		if isString(l) && isString(r) {
@@ -333,11 +336,19 @@ func (v *visitor) FunctionNode(node *ast.FunctionNode) reflect.Type {
 				numIn--
 			}
 
-			if len(node.Arguments) > numIn {
-				panic(v.error(node, "too many arguments to call %v", node.Name))
-			}
-			if len(node.Arguments) < numIn {
-				panic(v.error(node, "not enough arguments to call %v", node.Name))
+			variadic := fn.IsVariadic()
+			// if last arg is variadic then make sure args is >= numIn -1
+			if variadic {
+				if len(node.Arguments) < (numIn - 1) {
+					panic(v.error(node, "not enough arguments to call %v", node.Name))
+				}
+			} else {
+				if len(node.Arguments) > numIn {
+					panic(v.error(node, "too many arguments to call %v", node.Name))
+				}
+				if len(node.Arguments) < numIn {
+					panic(v.error(node, "not enough arguments to call %v", node.Name))
+				}
 			}
 
 			n := 0
@@ -349,6 +360,12 @@ func (v *visitor) FunctionNode(node *ast.FunctionNode) reflect.Type {
 
 			for _, arg := range node.Arguments {
 				t := v.visit(arg)
+
+				if variadic && n >= numIn-1 {
+					n++
+					continue
+				}
+
 				in := fn.In(n)
 
 				if isIntegerOrArithmeticOperation(arg) {
